@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: [
-    path.join(process.cwd(), './index.js'),
+    path.join(process.cwd(), './src/index.js'),
   ],
   target: 'web',
   output: {
@@ -76,7 +76,7 @@ module.exports = {
       },
     }),
     new HtmlWebpackPlugin({
-      template: './index.html',
+      template: './public/index.html',
       minify: {
         removeComments: true,
         collapseWhitespace: true,
