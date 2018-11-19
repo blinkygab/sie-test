@@ -1,18 +1,3 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import { Provider } from 'react-redux';
-// import { store } from './store';
-// import App from './components/App';
-// import './styles/styles.less';
-
-// ReactDOM.render((
-//   <Provider store={store}>
-//     <App />
-//   </Provider>
-
-// ), document.getElementById('root'));
-
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -22,7 +7,6 @@ import reducers from './reducers'
 import App from 'components/App';
 
 import './styles/styles.less';
-
 
 /*
 As you can see, there's no middleware included here.
