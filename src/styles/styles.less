@@ -3,12 +3,6 @@ body {
   background: #eee;
 }
 
-.clear-float::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
 .companies-list {
   margin-bottom: 2em;
 }
@@ -19,15 +13,18 @@ body {
   border-radius: 0.5em;
   padding: 1em;
   margin-bottom: 2em;
+}
 
-  &-info {
-    margin-bottom: 0.5em;
-  }
+.person-item {  
+  margin: 0.5em 0;
+
   &-thumb {
     margin-right: 0.5em;
   }
-}
 
-.company-details {
-  
+  &::after { //clearfix
+    content: "";
+    display: table;
+    clear: both;
+  }
 }

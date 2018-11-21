@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Person from '../components/Person';
 import { addPerson } from '../actions/person';
 
 const USERS_API = 'https://randomuser.me/api/?nat=us&inc=name,location,picture';
@@ -11,7 +12,8 @@ class PersonForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
 
     this.state = {
-      person: null
+      person: null,
+      companyId: null
     }
   }
 
@@ -27,12 +29,18 @@ class PersonForm extends React.Component {
   }
 
   handleDropdown(e) {
-    this.setState({ company: e.target.value });
+    this.setState({ companyId: e.target.value });
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.dispatch(addPerson(this.state));
+    // sanitize input from state
+    const { person, companyId } = this.state;
+    const name =  `${person.name.first} ${person.name.last}`;
+    const address = `${person.location.street}, ${person.location.city} ${person.location.state} ${person.location.postcode}`;
+    const thumb = person.picture.thumbnail;
+
+    this.props.dispatch(addPerson({ name, address, thumb, companyId }));
     this.fetchRandomUser();
   }
 
@@ -46,11 +54,7 @@ class PersonForm extends React.Component {
       <div className="person-form">
         <h3>Add Person</h3>
         {!person ? null : (
-          <div className="person-form-info clear-float">
-            <img src={person.picture.thumbnail} className="person-form-thumb float-left" alt={person.name.first} />
-            {person.name.first} {person.name.last}<br />
-            {person.location.street}
-          </div>
+          <Person name={`${person.name.first} ${person.name.last}`} address={person.location.street} thumb={person.picture.thumbnail} />
         )}
         <form onSubmit={this.handleSubmit} className="float-none">
           <div className="form-group">

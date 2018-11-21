@@ -25,10 +25,17 @@ class CompanyForm extends React.Component {
     e.preventDefault();
     const { dispatch } = this.props;
     dispatch(addCompany(this.state));
+    this.clearForm();
+  }
+
+  clearForm() {
+    document.querySelector('.company-form > form').reset();
   }
 
   render() {
-    // const { url }
+    const { pathname } = this.props.location;
+    if (pathname.indexOf('/details/') === 0) return null;
+
     return (
       <div className="company-form">
         <h3>Add Company</h3>
@@ -47,7 +54,7 @@ class CompanyForm extends React.Component {
           </div>
           <div className="form-group">
             <label htmlFor="companyPhone">Phone</label>
-            <input className="form-control" id="companyPhone" onChange={this.handleField} placeholder="Enter phone" type="text" required />
+            <input className="form-control" id="companyPhone" onChange={this.handleField} onKeyDown={this.handleKeyDown}  placeholder="Enter phone" type="text" required />
           </div>
           <button className="btn btn-primary">Save</button>
         </form>

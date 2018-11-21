@@ -15,12 +15,12 @@ class App extends React.Component {
         <div className="container-fluid">
           <div className="row">
             <main className="main col-sm">
-              {!companies ? null : <Route exact path="/" component={Companies} />}
+              {!companies ? null : <Route path="/" exact component={Companies} />}
               <Route path="/details/:companyId" component={CompanyDetails} />
             </main>
             <section className="forms-section col-sm">
-              <Route path={ new RegExp("^(?!.*(/details/)).*$") }  component={CompanyForm} />   
-              <PersonForm />
+              <Route component={CompanyForm} />
+              <Route component={PersonForm} />
             </section>
           </div>
         </div>

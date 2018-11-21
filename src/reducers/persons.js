@@ -3,18 +3,17 @@ import {
 } from '../actions/actionTypes';
 
 const persons = (state = [], action) => {
-  
   switch (action.type) {
     case ADD_PERSON:
-      const { id, person } = action.payload;
+      const { id, name, address, companyId, thumb } = action.payload;
       return [
         ...state,
         {
           id,
-          name: `${person.name.first} ${person.name.last}`,
-          address: `${person.location.street}, ${person.location.city} ${person.location.state} ${person.location.postcode}`,
-          company: parseInt(action.payload.company),
-          thumb: person.picture.thumb
+          name,
+          address,
+          companyId,
+          thumb
         }
       ]
     default:
